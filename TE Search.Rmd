@@ -1,6 +1,6 @@
 
 # RepeatModeler (v 2.0.2)
-```{bash}```
+`{bash}`
 BuildDatabase -name <genome_assembly_name>.db <genome_assembly_name>.fna
 
 export NINJA_DIR=/path_to_RepeatModeler_directory/NINJA-0.95-cluster_only/NINJA/
