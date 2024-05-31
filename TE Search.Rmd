@@ -1,0 +1,7 @@
+# RepeatModeler (v 2.0.2)
+BuildDatabase -name <genome_assembly_name>.db <genome_assembly_name>.fna
+
+export NINJA_DIR=/path_to_RepeatModeler_directory/NINJA-0.95-cluster_only/NINJA/
+
+RepeatModeler -pa <number_of_parallel_search_jobs> -LTRStruct -database <genome_assembly_name>.db 2>rm2.err 1>rm2.out
+
