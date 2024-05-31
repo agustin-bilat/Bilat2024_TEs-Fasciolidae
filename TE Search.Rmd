@@ -1,9 +1,12 @@
+`{bash}`
 
 # RepeatModeler (v 2.0.2)
-`{bash}`
+
 BuildDatabase -name <genome_assembly_name>.db <genome_assembly_name>.fna
 
 export NINJA_DIR=/path_to_RepeatModeler_directory/NINJA-0.95-cluster_only/NINJA/
 
 RepeatModeler -pa <number_of_parallel_search_jobs> -LTRStruct -database <genome_assembly_name>.db 2>rm2.err 1>rm2.out
 
+# cd-hit
+cd-hit-est -i fhep-PRJEB58756.families.fa -o fhep-PRJEB58756.families.cdhit.fa -c 0.8 -n 5 -G 0 -aS 0.8 -d 0 -g 1 -b 500
