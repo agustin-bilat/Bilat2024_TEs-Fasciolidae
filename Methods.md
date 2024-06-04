@@ -21,3 +21,7 @@ raw TE libraries of *Fa. hepatica*, *Fa. gigantica* and *Fp.buski*:
 (curated) TE libraries (set of curated TE consensus sequences in FASTA format)
 
 1. `cd-hit-est -i <library_name>.fa -o <library_name>.fa.cdhit -c 0.8 -n 5 -G 0 -aS 0.8 -d 0 -g 1 -b 500`
+
+2. faSplit byname <library_name>.fa.cdhit <Directory_name>/
+
+3. 
