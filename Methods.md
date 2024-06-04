@@ -11,7 +11,7 @@ raw TE libraries (set of repeat consensus sequences in FASTA format)
 
 - SINE_scan
 
-
+  
 2. ### Manual Curation of the *de novo* identified repeats ###
 
 **Input:**  
