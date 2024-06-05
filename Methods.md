@@ -26,6 +26,6 @@ raw TE libraries of *Fa. hepatica*, *Fa. gigantica* and *Fp.buski*:
 
 Within the <Directory_name> directory, which should only contain the fasta sequences of one of the three libraries we run the following command:
 
-3. `for i in \*fam\*.fa; do bash mkfasta_fromBlast.sh <genome_assembly_name>.fna $i 0 1000 1000 <chromsizes>.fa <genome_assembly_database_prefix> ; done`
+3. `for i in *fam*.fa; do bash mkfasta_fromBlast.sh <genome_assembly_name>.fna $i 0 1000 1000 <chromsizes>.fa <genome_assembly_database_prefix> ; done`
 
-4.  
+4. 
