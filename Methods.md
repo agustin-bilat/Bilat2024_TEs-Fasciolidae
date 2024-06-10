@@ -38,4 +38,4 @@ The set of families having at least 50 hits (*bed.fa files) are moved into a new
 
 Multiple sequence alignment with [MAFFT](https://mafft.cbrc.jp/alignment/software/):
 
-6. `for i in *.fa ; do mafft --thread 4 $i > $i.maf ; done 
+6. `for i in *.fa ; do mafft --thread 4 $i > $i.maf ; done` 
