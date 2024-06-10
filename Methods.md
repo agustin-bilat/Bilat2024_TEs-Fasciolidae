@@ -28,4 +28,10 @@ Within each directory named as <Directory_name> we ran the following command:
 
 3. `for i in *fam*.fa; do bash mkfasta_fromBlast.sh <genome_assembly_name>.fna $i 0 1000 1000 <chromsizes>.fa <genome_assembly_database_prefix> ; done`
 
+4. `
+
+
+
+
+
 4. 
