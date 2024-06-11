@@ -46,7 +46,7 @@ After making some manual edition of the alignments with _aliview_ (see the paper
 
 Create consensus sequence from each curated alignment (EMBOSS:6.6.0.0):
 
-8. `for i in <repeat_alignments> ; do cons -sequence $i -outseq $i.cons.fa -plurality 0.1 -name $i ; done
+8. `for i in <repeat_alignments> ; do cons -sequence $i -outseq $i.cons.fa -plurality 0.1 -name $i ; done`  
 
 For each species, the consensus are merged in multi-fasta files and _cdhit_ is run as in the step one of manual curation. The representative consensus for each cluster are kept for the following analysis. 
 
