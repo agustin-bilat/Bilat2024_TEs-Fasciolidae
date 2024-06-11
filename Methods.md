@@ -51,7 +51,7 @@ Create consensus sequence from each curated alignment (EMBOSS:6.6.0.0):
 For each species, the consensus are merged in multi-fasta files and _cdhit_ is run as in the step one of manual curation. The representative consensus for each cluster are kept for the following analysis. 
 
 9. Structural Characterization of Consensus:
-- [TE-Aid](https://doi.org/10.1186/s13100-021-00259-7)
+- [TE-Aid](https://doi.org/10.1186/s13100-021-00259-7)  
   `for i in *cons.fa; do bash TE-Aid --query $i --genome <genome_assembly_name>.fna -m 400 -e 10e-10 -o TEAid_out`
 - Protein domains (EMBOSS:6.6.0.0 and pfam_scan.pl tools are required)  
   `transeq -sequence <species_cdhit>.fa -outseq <species_cdhit>.fa.transeq -frame 6 -clean`  
