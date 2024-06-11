@@ -54,7 +54,7 @@ For each species, the consensus are merged in multi-fasta files and _cdhit_ is r
 - TE-Aid:  
   `for i in *cons.fa; do bash TE-Aid --query $i --genome <genome_assembly_name>.fna -m 400 -e 10e-10 -o TEAid_out`
 - Protein domains (EMBOSS:6.6.0.0)  
-  `transeq -sequence <species_cdhit>.fa -outseq <species_cdhit>.fa.transeq -frame 6 -clean`
+  `transeq -sequence <species_cdhit>.fa -outseq <species_cdhit>.fa.transeq -frame 6 -clean`  
   `pfam_scan.pl -fasta <species_cdhit>.fa.transeq -dir <pfam_database_path> -outfile <species>_pfams.txt` 
     
 10. Phylogenetic characterization:
