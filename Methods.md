@@ -1,4 +1,4 @@
-I ### *De novo* search of TEs from genomes' assemblies ###
+### *De novo* search of TEs from genomes' assemblies ###
 **Input:**  
 Genomes' assemblies (FASTA) of *Fa. hepatica*, *Fa. gigantica* and *Fp. buski*.  
 **Output:**  
@@ -12,7 +12,7 @@ rm2 libraries libraries (set of repeat consensus sequences in FASTA format)
 - SINE_scan (v 1.1.1)
 
   
-II. ### Manual Curation of the *de novo* identified repeats ###
+### Manual Curation of the *de novo* identified repeats ###
 
 **Input:**  
 raw TE libraries of *Fa. hepatica*, *Fa. gigantica* and *Fp.buski*:
