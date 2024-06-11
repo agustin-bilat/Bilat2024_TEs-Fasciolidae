@@ -1,4 +1,4 @@
-I. ### *De novo* search of TEs from genomes' assemblies ###
+I ### *De novo* search of TEs from genomes' assemblies ###
 **Input:**  
 Genomes' assemblies (FASTA) of *Fa. hepatica*, *Fa. gigantica* and *Fp. buski*.  
 **Output:**  
