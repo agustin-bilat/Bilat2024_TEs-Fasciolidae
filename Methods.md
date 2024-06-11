@@ -44,4 +44,15 @@ After making some manual edition of the alignments with _aliview_ (see the paper
 
 7. `for i in *.maf; do CIAlign --infile $i --remove_insertions --insertion_min_flank 3 --insertion_min_size 1 --insertion_max_size 500 --remove_divergent --remove_divergent_minperc 0.65 --crop_ends --remove_short --remove_min_length 100 --plot_input --plot_output --outfile_stem $i ; done`
 
-8. 
+Create consensus sequence from each curated alignment (EMBOSS:6.6.0.0):
+
+8. `for i in <alignment_name> ; do cons -sequence $i -outseq $i.fa -plurality 0.1 -name $i ; done
+
+Finally, the consensus are merged in a multi-fasta file and _cdhit_ is run as in step 1. 
+
+9. ## Caracterization of the curated consensus ##
+    9.1 aaaa
+
+
+
+1. 
