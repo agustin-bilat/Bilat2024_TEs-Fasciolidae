@@ -40,7 +40,7 @@ Multiple sequence alignment with [MAFFT](https://mafft.cbrc.jp/alignment/softwar
 
 6. `for i in *.fa ; do mafft --thread 4 $i > $i.maf ; done`
 
-After making some manual edition of the alignments with _aliview_ (see the paper's methods section). For families were the borders of the alignment are not reached, we repeat the steps 3 to 6 changing the values of command in step 3, in order to increase flanking regions of the blast hits (in the example 1 kb at either side).  
+The alignments are manually edited with _aliview_ (see the paper's methods section). For families were the borders of the alignment are not reached, we repeat the steps 3 to 6 changing the values of command in step 3, in order to increase flanking regions of the blast hits (in the example 1 kb at either side).  
 
 When manual edition is ready, further automatic edition is made with the _CIAlign_ software with the following options and parameters:  
 
