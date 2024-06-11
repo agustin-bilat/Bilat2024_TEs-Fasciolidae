@@ -46,13 +46,17 @@ After making some manual edition of the alignments with _aliview_ (see the paper
 
 Create consensus sequence from each curated alignment (EMBOSS:6.6.0.0):
 
-8. `for i in <alignment_name> ; do cons -sequence $i -outseq $i.fa -plurality 0.1 -name $i ; done
+8. `for i in <repeat_alignments> ; do cons -sequence $i -outseq $i.cons.fa -plurality 0.1 -name $i ; done
 
-Finally, the consensus are merged in a multi-fasta file and _cdhit_ is run as in step 1. 
+For each species, the consensus are merged in multi-fasta files and _cdhit_ is run as in the step one of manual curation. The representative consensus for each cluster are kept for the following analysis. 
 
-9. ## Caracterization of the curated consensus ##
-    9.1 aaaa
+9. Structural Characterization of Consensus:
+- TE-Aid:
+  `for i in *cons.fa; do bash TE-Aid --query $i --genome <genome_assembly_name>.fna -m 400 -e 10e-10 -o TEAid_out`
+- Protein domains (EMBOSS:6.6.0.0 & 
+  `transeq -sequence <species_cdhit>.fa -outseq <species_cdhit>.fa.transeq -frame 6 -clean`
+  `pfam_scan.pl -fasta <species_cdhit>.fa.transeq -dir <pfam_database_path> -outfile <species>_pfams.txt` 
+    
+10. Phylogenetic characterization:
 
 
-
-1. 
