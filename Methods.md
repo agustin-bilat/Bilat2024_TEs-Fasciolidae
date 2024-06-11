@@ -32,7 +32,7 @@ For the families in which less than fifty blast hits were obtained, the script [
 
 4. `for i in *fam*.fa; do bash mkfasta_fromBlast.sh <genome_assembly_name>.fna $i 0 1000 1000 <chromsizes>.fa <genome_assembly_database_prefix> ; done`
 
-The set of families having at least 50 hits (*bed.fa files) are moved into a new directory were the following script is run [ready_for_MSA.sh](https://github.com/agustin-bilat/Bilat2024_TEs-Fasciolidae/blob/main/scripts/ready_for_MSA.sh): 
+The set of families having at least 50 hits (*bed.fa files) are moved into a new directory were the script [ready_for_MSA.sh](https://github.com/agustin-bilat/Bilat2024_TEs-Fasciolidae/blob/main/scripts/ready_for_MSA.sh) is run to subset a maximum number of sequences for each family to be aligned.
 
 5. `for i in *fam*bed.fa ; do bash /home/agustin/Programs/TE_scripts_ab2112/TEcuration/ready_for_MSA.sh $i 200 50 ; done`
 
@@ -40,7 +40,9 @@ Multiple sequence alignment with [MAFFT](https://mafft.cbrc.jp/alignment/softwar
 
 6. `for i in *.fa ; do mafft --thread 4 $i > $i.maf ; done`
 
-After making some manual edition of the alignments with _aliview_ (see the paper's methods section) further automatic edition is made with the _CIAlign_ software with the following options and parameters: 
+After making some manual edition of the alignments with _aliview_ (see the paper's methods section). For families were the borders of the alignment are not reached, we repeat steps 3 to 6 changing the value of 
+
+further automatic edition is made with the _CIAlign_ software with the following options and parameters: 
 
 7. `for i in *.maf; do CIAlign --infile $i --remove_insertions --insertion_min_flank 3 --insertion_min_size 1 --insertion_max_size 500 --remove_divergent --remove_divergent_minperc 0.65 --crop_ends --remove_short --remove_min_length 100 --plot_input --plot_output --outfile_stem $i ; done`
 
