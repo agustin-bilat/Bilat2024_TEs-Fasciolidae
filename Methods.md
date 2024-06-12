@@ -64,5 +64,9 @@ Based on both the NJ-tree and the structural characterization, TEs were classifi
 
 10. Phylogenetic characterization with iqtree (v 1.6.12):
 
-`iqtree -s <RVT_protein_seq>.maf -m MFP -nt 2 -bb 1000 -bnni`  #<RVT_protein_seq>.maf correspond to either the LINE, LTR or PLE alignment.     
+Align the RVT or DDE/Tase identified within translated consensus:
+`mafft --localpair --maxiterate 1000 <protein-domain.aa> > <protein-domain.aa>.maf`
+Make maximum-likelihood trees:
+`iqtree -s <protein-domain_seq>.maf -m MFP -nt 2 -bb 1000 -bnni`  
 
+Sequences are renamed and classified to finally obtain the curated libraries (see article).
