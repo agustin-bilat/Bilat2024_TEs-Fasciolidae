@@ -57,8 +57,11 @@ For each species, the consensus are merged in multi-fasta files and _cdhit_ is r
   `for i in *cons.fa; do bash TE-Aid --query $i --genome <genome_assembly_name>.fna -m 400 -e 10e-10 -o TEAid_out`
 - Protein domains (EMBOSS:6.6.0.0 and pfam_scan.pl tools are required)  
   `transeq -sequence <species_cdhit>.fa -outseq <species_cdhit>.fa.transeq -frame 6 -clean`  
-  `pfam_scan.pl -fasta <species_cdhit>.fa.transeq -dir <pfam_database_path> -outfile <species>_pfams.txt` 
-    
+  `pfam_scan.pl -fasta <species_cdhit>.fa.transeq -dir <pfam_database_path> -outfile <species>_pfams.txt`  
+
+A Neighbour-Joining (NJ) tree of aligned Reverse Transcriptase (RVT) domains from all the curated consensus was generated with MEGA11 (Tamura et al., 2021) to get an global overview of the types of retrotranposons.  
+Based on both the NJ-tree and the structural characterization, TEs were classified as DNA transposons (class II) or as LINE, LTR or PLE (class I).
+
 10. Phylogenetic characterization:
 
 
