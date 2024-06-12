@@ -48,7 +48,7 @@ When manual edition is ready, further automatic edition is made with the _CIAlig
 
 6. `for i in *.maf; do CIAlign --infile $i --remove_insertions --insertion_min_flank 3 --insertion_min_size 1 --insertion_max_size 500 --remove_divergent --remove_divergent_minperc 0.65 --crop_ends --remove_short --remove_min_length 100 --plot_input --plot_output --outfile_stem $i ; done`
 
-We check the mini plots of the curated alignments for further manual curation when necessary (for example, if insertions are still observed in an aligmnet we eliminate them with aliview). Additional sequences might be eliminated based on the observation of the aligmnets plots (higly-fragmented and low-copy aligments after CIAlign trimming).  
+We check the mini plots of the curated alignments for further manual curation when necessary (for example, if insertions are still observed in an aligmnet we eliminate them with aliview). Additional sequences might be eliminated based on the observation of the aligmnets plots (higly-fragmented/unconserved and low-copy aligments after CIAlign trimming).  
   
 Create consensus sequence from each curated alignment (EMBOSS:6.6.0.0):
 
