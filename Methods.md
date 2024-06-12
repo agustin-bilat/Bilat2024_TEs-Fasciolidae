@@ -62,6 +62,7 @@ For each species, the consensus are merged in multi-fasta files and _cdhit_ is r
 A Neighbour-Joining (NJ) tree of aligned Reverse Transcriptase (RVT) domains from all the curated consensus was generated with MEGA11 (Tamura et al., 2021) to get an global overview of the types of retrotranposons.  
 Based on both the NJ-tree and the structural characterization, TEs were classified as DNA transposons (class II) or as LINE, LTR or PLE (class I).
 
-10. Phylogenetic characterization:
+10. Phylogenetic characterization with iqtree (v 1.6.12):
 
+`iqtree -s <RVT_protein_seq>.maf -m MFP -nt 2 -bb 1000 -bnni`  #<RVT_protein_seq>.maf correspond to either the LINE, LTR or PLE alignment.     
 
