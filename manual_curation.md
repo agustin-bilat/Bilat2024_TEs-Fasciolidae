@@ -1,5 +1,7 @@
 The manual curation workflow is based on the guidelines indicated at: Goubert, C., Craig, R.J., Bilat, A.F. et al. A beginner’s guide to manual curation of transposable elements. Mobile DNA 13, 7 (2022). https://doi.org/10.1186/s13100-021-00259-7.
 
+The main steps and commands are indicated below:
+
 ### *De novo* search of TEs from genomes' assemblies ###
 **Input:**  
 Genomes' assemblies (FASTA) of *Fa. hepatica*, *Fa. gigantica* and *Fp. buski*.  
