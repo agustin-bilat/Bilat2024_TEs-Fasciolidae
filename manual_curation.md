@@ -30,7 +30,7 @@ raw TE libraries of *Fa. hepatica*, *Fa. gigantica* and *Fp.buski*:
 
 Within each directory named as <Directory_name> we get the genomic insertions of each family by using the script [mkfasta_from_megablast.sh](https://github.com/agustin-bilat/Bilat2024_TEs-Fasciolidae/blob/main/scripts/mkfasta_from_megablast.sh):
 
-3. `for i in *fam*.fa; do bash mkfasta_fromBlast.sh <genome_assembly_name>.fna $i 0 1000 1000 <chromsizes>.fa <genome_assembly_database_prefix> ; done`
+3. `for i in *fam*.fa; do bash mkfasta_from_megablast.sh <genome_assembly_name>.fna $i 0 1000 1000 <chromsizes>.fa <genome_assembly_database_prefix> ; done`
 
 For the families in which less than 50 blast hits were obtained, the script [mkfasta_fromBlast.sh](https://github.com/agustin-bilat/Bilat2024_TEs-Fasciolidae/blob/main/scripts/mkfasta_from_blastn.sh) is run as follows:
 
