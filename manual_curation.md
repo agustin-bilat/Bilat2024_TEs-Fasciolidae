@@ -74,3 +74,6 @@ Make maximum-likelihood trees:
 `iqtree -s <protein-domain_seq>.maf -m MFP -nt 2 -bb 1000 -bnni`  
 
 Sequences are renamed and classified to finally obtain the curated libraries (see article).
+
+
+aa
