@@ -1,4 +1,4 @@
-This readme file describes the specific steps and parameters used for the manual curation of repeats mentioned at the section Methods in the publication entitled ***article's name***. The metodology is based on the guidelines described elsewhere (Goubert, C., Craig, R.J., Bilat, A.F. et al. A beginner’s guide to manual curation of transposable elements. Mobile DNA 13, 7 (2022). https://doi.org/10.1186/s13100-021-00259-7). The reference for each software can be found in that article. The scripts that we used for manual curation were obtained by sligthly modifying the ones provided at the Goubert's et al. article, and are included in the directory [manual_curation/](https://github.com/agustin-bilat/Bilat2024_TEs-Fasciolidae/manual_curation/).
+This readme file describes the specific steps and parameters used for the manual curation of repeats mentioned at the section Methods in the publication entitled ***article's name***. The metodology is based on the guidelines described elsewhere (Goubert, C., Craig, R.J., Bilat, A.F. et al. A beginner’s guide to manual curation of transposable elements. Mobile DNA 13, 7 (2022). https://doi.org/10.1186/s13100-021-00259-7). The reference for each software can be found in that article. The scripts that we used for manual curation were obtained by sligthly modifying the ones provided at the Goubert's et al. article, and are included in the directory [manual_curation/](https://github.com/agustin-bilat/Bilat2024_TEs-Fasciolidae/blob/main/manual_curation/).
 
 ## Abbreviations ##  
 
@@ -17,17 +17,17 @@ curated TE-library (MULTI-FASTA)
 
 2. `faSplit byname <RM2-library_name>.fa.cdhit <Directory_name>/`
 
-Within the directory "<Directory_name>" the script [mkfasta_from_megablast.sh](https://github.com/agustin-bilat/Bilat2024_TEs-Fasciolidae/blob/main/scripts/mkfasta_from_megablast.sh) is run as follows:
+Within the directory "<Directory_name>" the script [mkfasta_from_megablast.sh](https://github.com/agustin-bilat/Bilat2024_TEs-Fasciolidae/blob/main/manual_curation/mkfasta_from_megablast.sh) is run as follows:
 
 3. a) `for i in *fam*.fa; do bash mkfasta_from_megablast.sh <genome_assembly_name>.fna $i 0 1000 1000 <chromsizes>.fa <genome_assembly_database_prefix> ; done`
 
 Output families (*bed.fa, MULTI-FASTA files) generated with at least 50 megablast hits are moved into a new directory until step 4.  
-For the remaining families the script output files are removed, and the original RM2-queries are reused as inputs into a new more flexible script ([mkfasta_fromBlast.sh](https://github.com/agustin-bilat/Bilat2024_TEs-Fasciolidae/blob/main/scripts/mkfasta_from_blastn.sh)) as it is described below:
+For the remaining families the script output files are removed, and the original RM2-queries are reused as inputs into a new more flexible script ([mkfasta_fromBlast.sh](https://github.com/agustin-bilat/Bilat2024_TEs-Fasciolidae/blob/main/manual_curation/mkfasta_from_blastn.sh)) as it is described below:
 
 3. b) `for i in *fam*.fa; do bash mkfasta_fromBlast.sh <genome_assembly_name>.fna $i 0 1000 1000 <chromsizes>.fa <genome_assembly_database_prefix> ; done`
 
 Output families (*bed.fa, MULTI-FASTA files) with at least blastn hits are moved into the same directory were the other high copy megablast hits families were located.  
-Next, the script [ready_for_MSA.sh](https://github.com/agustin-bilat/Bilat2024_TEs-Fasciolidae/blob/main/scripts/ready_for_MSA.sh) is run within that directory to subset a maximum number of 200 sequences:
+Next, the script [ready_for_MSA.sh](https://github.com/agustin-bilat/Bilat2024_TEs-Fasciolidae/blob/main/manual_curation/ready_for_MSA.sh) is run within that directory to subset a maximum number of 200 sequences:
 
 4. `for i in *fam*bed.fa ; do bash ready_for_MSA.sh $i 200 50 ; done`
 
