@@ -34,19 +34,19 @@ Multiple sequence alignment are then generated using [MAFFT](https://mafft.cbrc.
 
 5. `for i in *.fa ; do mafft --thread 4 $i > $i.maf ; done`
 
-The alignments are manually edited with _aliview_ as described by Goubert, C., 2022. For families were the borders of the alignment are not reached, the steps 3 to 5 are repeated by changing the parameters in step 3 in order to increase the flanking sequences of hits to be extracted as fastas with respect to the first iteration (in which 1000 bp at either side of each hit was extended). The corresponding older outputs are removed.
+The alignments are manually edited with _aliview_ as described by Goubert, C., 2022. For families were the borders of the alignment are not reached, the steps 3 to 5 are repeated by changing the parameters in step 3 in order to increase the flanking sequences of hits to be extracted as fastas with respect to the first iteration (in which 1000 bp at either side of each hit is extended). The corresponding older outputs are removed.
 
-When manual edition is ready, further automatic edition is made with the _CIAlign_ software with the following options and parameters:  
+Next, further automatic edition is made with the _CIAlign_ software with the following options and parameters:  
 
 6. `for i in *.maf; do CIAlign --infile $i --remove_insertions --insertion_min_flank 3 --insertion_min_size 1 --insertion_max_size 500 --remove_divergent --remove_divergent_minperc 0.65 --crop_ends --remove_short --remove_min_length 100 --plot_input --plot_output --outfile_stem $i ; done`
 
-We check the mini plots of the curated alignments for further manual curation when necessary (for example, if insertions are still observed in an aligmnet we eliminate them with aliview). Additional sequences might be eliminated based on the observation of the aligmnets plots (higly-fragmented/unconserved and low-copy aligments after CIAlign trimming).  
-  
+The input and output alignment's mini-plots are checked to evaluate if further manual curation is necessary (for example, if insertions are still observed in the aligmnet they are removed with aliview).   
+
 Create consensus sequence from each curated alignment (EMBOSS:6.6.0.0):
 
 7. `for i in <repeat_alignments> ; do cons -sequence $i -outseq $i.cons.fa -plurality 0.1 -name $i ; done`  
 
-For each species, the consensus are merged in multi-fasta files and _cdhit_ is run as in the step one of manual curation to eliminate redundancies.  The representative consensus for each cluster are kept in the library. 
+The collection of consensus are then merged in multi-fasta files and _cdhit_ is run again to eliminate redundancies. The representative consensus for each cluster are kept in the library for further characterization of the curated families (see new_dir)
 
 8. Structural Characterization of Consensus:
 - [TE-Aid](https://doi.org/10.1186/s13100-021-00259-7)  
@@ -68,4 +68,4 @@ Make maximum-likelihood trees:
 Sequences are renamed and classified to finally obtain the curated libraries (see article).
 
 
-aa
+Additional sequences might be eliminated based on the observation of the aligmnets plots (higly-fragmented/unconserved and low-copy aligments after CIAlign trimming).
