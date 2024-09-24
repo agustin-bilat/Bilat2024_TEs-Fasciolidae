@@ -1,4 +1,4 @@
-This readme file describes the specific steps and parameters used for the manual curation of repeats mentioned at the section Methods in the publication entitled ***article's name***. The metodology is based on the guidelines described elsewhere (Goubert, C., Craig, R.J., Bilat, A.F. et al. A beginner’s guide to manual curation of transposable elements. Mobile DNA 13, 7 (2022). https://doi.org/10.1186/s13100-021-00259-7). The reference for each software can be found in that article. The scripts that we used for manual curation and were obtained by sligthly modifying the ones provided at the Goubert's et al. article are included in this directory: [manual_curation/](https://github.com/agustin-bilat/Bilat2024_TEs-Fasciolidae/blob/main/manual_curation/).
+This readme file describes the specific steps and parameters used for the manual curation of repeats mentioned at the section Methods in the publication entitled ***article's name***. The metodology is based on the guidelines described elsewhere (Goubert, C., Craig, R.J., Bilat, A.F. et al. A beginner’s guide to manual curation of transposable elements. Mobile DNA 13, 7 (2022). https://doi.org/10.1186/s13100-021-00259-7). The reference for each software can be found in that article. Some scripts that were used for manual curation were obtained by sligthly modifying the ones provided at the Goubert's et al. article and are included in this directory: [manual_curation/](https://github.com/agustin-bilat/Bilat2024_TEs-Fasciolidae/blob/main/manual_curation/).
 
 ## Abbreviations ##  
 
@@ -21,21 +21,20 @@ Within the directory "<Directory_name>" the script [mkfasta_from_megablast.sh](h
 
 3. a) `for i in *fam*.fa; do bash mkfasta_from_megablast.sh <genome_assembly_name>.fna $i 0 1000 1000 <chromsizes>.fa <genome_assembly_database_prefix> ; done`
 
-Output families (*bed.fa, MULTI-FASTA files) generated with at least 50 megablast hits are moved into a new directory until step 4.  
-For the remaining families the script output files are removed, and the original RM2-queries are reused as inputs into a new more flexible script ([mkfasta_fromBlast.sh](https://github.com/agustin-bilat/Bilat2024_TEs-Fasciolidae/blob/main/manual_curation/mkfasta_from_blastn.sh)) as it is described below:
+Outputs for families with at least 50 megablast hits are moved into a separate directory. For the remaining families, the script's output files are removed, and the original RM2-queries are re-used as inputs into a more flexible script (blastn instead of megablast) ([mkfasta_fromBlast.sh](https://github.com/agustin-bilat/Bilat2024_TEs-Fasciolidae/blob/main/manual_curation/mkfasta_from_blastn.sh)) as it is described below:
 
 3. b) `for i in *fam*.fa; do bash mkfasta_fromBlast.sh <genome_assembly_name>.fna $i 0 1000 1000 <chromsizes>.fa <genome_assembly_database_prefix> ; done`
 
-Output families (*bed.fa, MULTI-FASTA files) with at least blastn hits are moved into the same directory were the other high copy megablast hits families were located.  
+Output files from families with at least 50 blastn hits are moved into the directory mentioned above, were the megablast output files should be located.  
 Next, the script [ready_for_MSA.sh](https://github.com/agustin-bilat/Bilat2024_TEs-Fasciolidae/blob/main/manual_curation/ready_for_MSA.sh) is run within that directory to subset a maximum number of 200 sequences:
 
 4. `for i in *fam*bed.fa ; do bash ready_for_MSA.sh $i 200 50 ; done`
 
-Multiple sequence alignment are then generated using [MAFFT](https://mafft.cbrc.jp/alignment/software/):
+Multiple sequence alignment are then generated using [MAFFT](https://mafft.cbrc.jp/alignment/software/). For families having more than the maximum threshold number of selected sequences ("200" in the case shown in step 4) the alignment is made for the ready_for_MSA.sh's output *.fa files but not for the original multi-fasta files.
 
 5. `for i in *.fa ; do mafft --thread 4 $i > $i.maf ; done`
 
-The alignments are manually edited with _aliview_ as described by Goubert, C., 2022. For families were the borders of the alignment are not reached, the steps 3 to 5 are repeated by changing the parameters in step 3 in order to increase the flanking sequences of hits to be extracted as fastas with respect to the first iteration (in which 1000 bp at either side of each hit was extended).  
+The alignments are manually edited with _aliview_ as described by Goubert, C., 2022. For families were the borders of the alignment are not reached, the steps 3 to 5 are repeated by changing the parameters in step 3 in order to increase the flanking sequences of hits to be extracted as fastas with respect to the first iteration (in which 1000 bp at either side of each hit was extended). The corresponding older outputs are removed.
 
 When manual edition is ready, further automatic edition is made with the _CIAlign_ software with the following options and parameters:  
 
