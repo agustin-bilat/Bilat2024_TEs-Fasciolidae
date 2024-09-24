@@ -1,51 +1,41 @@
-The manual curation workflow is based on the guidelines indicated at: Goubert, C., Craig, R.J., Bilat, A.F. et al. A beginner’s guide to manual curation of transposable elements. Mobile DNA 13, 7 (2022). https://doi.org/10.1186/s13100-021-00259-7.
+This file describes the specific steps and parameters associated with the manual curation of repeats that is mentioned in Methods section at ***the article***. The metodology is based on the guidelines described elsewhere (Goubert, C., Craig, R.J., Bilat, A.F. et al. A beginner’s guide to manual curation of transposable elements. Mobile DNA 13, 7 (2022). https://doi.org/10.1186/s13100-021-00259-7). The bibliography associated to each software can be found in that article. The scripts indicated below are included in modified from the ones present in the Goubert article.
 
-The main steps and commands are indicated below:
+## Abbreviations ##  
 
-### *De novo* search of TEs from genomes' assemblies ###
-**Input:**  
-Genomes' assemblies (FASTA) of *Fa. hepatica*, *Fa. gigantica* and *Fp. buski*.  
-**Output:**  
-RM2-libraries (set of repeats' consensus sequences in MULTI-FASTA format)  
-**Software:**  
-Raassssssssssssssssssssssssssssssssssssssssss
-
-
-- RepeatModeler (RM2) (v 2.0.2)  
-  `BuildDatabase -name <genome_assembly_name>.db <genome_assembly_name>.fna`
-    
-  `RepeatModeler -pa <number_of_parallel_search_jobs> -LTRStruct -database <genome_assembly_name>.db 2>rm2.err 1>rm2.out`
+***RM2-library:*** RepeatModeler (v 2.0.2) output of multi-fasta consensus sequences.  
 
   
-### Manual Curation of the *de novo* identified repeats ###
+## Manual Curation ##
 
 **Input:**  
-A RM2-library (MULTI-FASTA)
+RM2-library (MULTI-FASTA)
 
 **Output:**  
-A curated TE libraries (MULTI-FASTA)
+curated TE-library (MULTI-FASTA)
 
-1. `cd-hit-est -i <RM2-library_name>.fa -o <Curated library_name>.fa.cdhit -c 0.8 -n 5 -G 0 -aS 0.8 -d 0 -g 1 -b 500`
+1. `cd-hit-est -i <RM2-library_name>.fa -o <RM2-library_name>.fa.cdhit -c 0.8 -n 5 -G 0 -aS 0.8 -d 0 -g 1 -b 500`
 
-2. `faSplit byname <library_name>.fa.cdhit <Directory_name>/`
+2. `faSplit byname <RM2-library_name>.fa.cdhit <Directory_name>/`
 
-Within each directory named as <Directory_name> we get the genomic insertions of each family by using the script [mkfasta_from_megablast.sh](https://github.com/agustin-bilat/Bilat2024_TEs-Fasciolidae/blob/main/scripts/mkfasta_from_megablast.sh):
+Within the directory "<Directory_name>" the script [mkfasta_from_megablast.sh](https://github.com/agustin-bilat/Bilat2024_TEs-Fasciolidae/blob/main/scripts/mkfasta_from_megablast.sh) is run as follows:
 
 3. a) `for i in *fam*.fa; do bash mkfasta_from_megablast.sh <genome_assembly_name>.fna $i 0 1000 1000 <chromsizes>.fa <genome_assembly_database_prefix> ; done`
 
-For the families in which less than 50 blast hits were obtained, the script [mkfasta_fromBlast.sh](https://github.com/agustin-bilat/Bilat2024_TEs-Fasciolidae/blob/main/scripts/mkfasta_from_blastn.sh) is run as follows:
+Output families (*bed.fa, MULTI-FASTA files) generated with at least 50 megablast hits are moved into a new directory until step 4.  
+For the remaining families the script output files are removed, and the original RM2-queries are reused as inputs into a new more flexible script ([mkfasta_fromBlast.sh](https://github.com/agustin-bilat/Bilat2024_TEs-Fasciolidae/blob/main/scripts/mkfasta_from_blastn.sh)) as it is described below:
 
 3. b) `for i in *fam*.fa; do bash mkfasta_fromBlast.sh <genome_assembly_name>.fna $i 0 1000 1000 <chromsizes>.fa <genome_assembly_database_prefix> ; done`
 
-The set of families having at least 50 hits (*bed.fa files) are moved into a new directory were the script [ready_for_MSA.sh](https://github.com/agustin-bilat/Bilat2024_TEs-Fasciolidae/blob/main/scripts/ready_for_MSA.sh) is run to subset a maximum number of sequences for each family to be aligned.
+Output families (*bed.fa, MULTI-FASTA files) with at least blastn hits are moved into the same directory were the other high copy megablast hits families were located.  
+Next, the script [ready_for_MSA.sh](https://github.com/agustin-bilat/Bilat2024_TEs-Fasciolidae/blob/main/scripts/ready_for_MSA.sh) is run within that directory to subset a maximum number of 200 sequences:
 
-4. `for i in *fam*bed.fa ; do bash /home/agustin/Programs/TE_scripts_ab2112/TEcuration/ready_for_MSA.sh $i 200 50 ; done`
+4. `for i in *fam*bed.fa ; do bash ready_for_MSA.sh $i 200 50 ; done`
 
-Multiple sequence alignment with [MAFFT](https://mafft.cbrc.jp/alignment/software/):
+Multiple sequence alignment are then generated using [MAFFT](https://mafft.cbrc.jp/alignment/software/):
 
 5. `for i in *.fa ; do mafft --thread 4 $i > $i.maf ; done`
 
-The alignments are manually edited with _aliview_ as described by Goubert, C., 2022. For families were the borders of the alignment are not reached, we repeat the steps 3 to 5 changing the values of the command in step 3 in order to increase the flanking sequence of the blast hits to be extracted as fasta (in the example 1 kb at either side).  
+The alignments are manually edited with _aliview_ as described by Goubert, C., 2022. For families were the borders of the alignment are not reached, the steps 3 to 5 are repeated by changing the parameters in step 3 in order to increase the flanking sequences of hits to be extracted as fastas with respect to the first iteration (in which 1000 bp at either side of each hit was extended).  
 
 When manual edition is ready, further automatic edition is made with the _CIAlign_ software with the following options and parameters:  
 
