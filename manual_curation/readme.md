@@ -46,5 +46,4 @@ Create consensus sequence from each curated alignment (EMBOSS:6.6.0.0):
 
 7. `for i in <repeat_alignments> ; do cons -sequence $i -outseq $i.cons.fa -plurality 0.1 -name $i ; done`  
 
-The collection of consensus are then merged in multi-fasta files and _cdhit_ is run again to eliminate redundancies. The representative consensus for each cluster are kept in the library for further characterization of the curated families (see new_dir)
-
+The collection of consensus are then merged in multi-fasta files and _cdhit_ is run again to eliminate redundancies. The representative consensus for each cluster are kept in the library for characterization, naming, classification and further filtering as it is describe in the Methods section of the manuscript.
