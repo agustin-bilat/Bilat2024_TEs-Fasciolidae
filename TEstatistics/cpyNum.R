@@ -17,7 +17,7 @@ df <- read.csv(args$input, header = TRUE)
 df2 <- df %>% 
   group_by(assembly,order,TEtype,TEname) %>% 
   summarise(numCopies = n(),  # TE Copy-number
-            numFullCopies=sum(insLen > 0.85 * consLen & insLen < 1.15 * consLen), # Full-length Copy-number
+            numFullCopies=sum(insLen > 0.85 * consLen & insLen < 1.15 * consLen), # Full-length Copy-number (85% to 115% of consensus length)
             .groups = 'drop') 
 
 df3 <- df2 %>% mutate(TEtype = gsub("/Merlin|/Helitron|/PiggyBac", "/Others", TEtype)) # Substitute TEtype-names
