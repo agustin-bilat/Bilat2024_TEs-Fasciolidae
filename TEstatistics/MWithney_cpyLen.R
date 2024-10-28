@@ -104,13 +104,13 @@ rm(hep,gig)
 write.csv(df,"MannWithney_cpyLen.csv",row.names = FALSE)
 
 
-# PIE CHARTS
+# 3. PIE CHARTS
 
 # Create a new column for significance
 df <- df %>%
-  mutate(significant = ifelse(pval_adj < 0.01, "Significant", "Not Significant"))
+  mutate(significant = ifelse(pval_adj < 0.01, "Significant", "Not Significant"))  # Adjusted p-value: 0.01
 
-#calculate counts
+# Calculate counts
 count_df <- df %>%
   group_by(assemblies,significant) %>%
   summarise(count = n(),
@@ -123,7 +123,7 @@ gp <- ggplot(count_df, aes(x = "", y = count, fill = significant)) +
   geom_bar(stat = "identity", width = 1) +
   coord_polar(theta = "y") +
   labs(fill = "Result") +
-  scale_fill_manual(values = c("Significant" = "#4D4D4D", "Not Significant" = "#BFBFBF")) +  # Updated neutral colors
+  scale_fill_manual(values = c("Significant" = "#4D4D4D", "Not Significant" = "#BFBFBF")) +  
   theme_void() +
   theme(
     legend.position = "right",
@@ -134,6 +134,6 @@ gp <- ggplot(count_df, aes(x = "", y = count, fill = significant)) +
   geom_text(aes(label = count), 
             position = position_stack(vjus = 0.5), 
             color = "white", 
-            size = 8)  # Increased text size
+            size = 8)  
 
 ggsave("pie_chart.tiff", plot = gp, dpi = 300, width = 10, height = 5)
