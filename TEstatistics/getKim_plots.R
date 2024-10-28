@@ -36,7 +36,7 @@ ggsave('kim_stack.tiff', plot = gp, device = "tiff", dpi = 300,height = 10,width
 
 # 2. TEtype kimura
 
-#kimTE.tab <- subset(kim.tab,!grepl("Unknown",TEtype))
+#kim.tab <- subset(kim.tab,!grepl("Unknown",TEtype))
 
 gp2 <- ggplot(kim.tab,aes(x=kimura,y=percent_of_genome,fill=TEtype)) + 
   geom_bar(stat="identity",color="black",show.legend = FALSE) + 
