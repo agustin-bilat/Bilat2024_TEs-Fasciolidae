@@ -2,7 +2,7 @@
 if [ $# -ne 1 ]
 then
         echo -e "\nusage: $0 <out_dir_name>\n"
-        echo "join outputs"
+        echo "join outputs from the output of insertions_to_fasta.sh.\n This should be run within the same directory"
         exit
 fi
 
