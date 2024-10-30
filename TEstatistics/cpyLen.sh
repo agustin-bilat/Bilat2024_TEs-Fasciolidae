@@ -2,7 +2,7 @@
 if [ $# -ne 2 ]
 then
         echo -e "\nusage: $0 <repeat_masker.out> <assembly_name (short)> \n"
-        echo -e "Description: Obtain sequences of insertions from RepeatMasker output table for each TE family.\nOutput format: assembly_name\tTEname\tTEtype\tlength" 
+        echo -e "Description: Obtain the length of TE insertions (copy-length) from RepeatMasker output table for each TE family.\nOutput format: assembly_name\tTEname\tTEtype\tlength" 
         exit
 fi
 
@@ -11,7 +11,6 @@ assName=$2
 
 
 # Convert RepeatMasker.out table into:  chromosome | chr-beg | chr-end | fam-name | "." | str | TE-type | insertion-beg | insertion-end | ID 
-
 awk '$11!="Unknown"{print}' $repMask | grep -v "Simple_repeat" | grep -v "Low_complexity" | awk '$11!="Satellite"{print}' | awk -v OFS="\t" 'NR>3 && $9~/C/{print $5,$6-1,$7,$10,".","-",$11,$14-1,$13,$15}NR>3 && $9~/+/{print $5,$6-1,$7,$10,".","+",$11,$12-1,$13,$15}' |  sort -k10,10n -k8,8n > table1.tmp
 
 # Get length of TE copies ( TEname#ID | TEtype | copy-length)
