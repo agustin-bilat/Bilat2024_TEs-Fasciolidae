@@ -13,6 +13,12 @@ if [ $# -ne 4 ]; then
     exit
 fi
 
+# Check if bedtools is installed
+if ! command -v bedtools &> /dev/null; then
+    echo "Error: bedtools is not installed. Please install bedtools to proceed."
+    exit 1
+fi
+
 # Assign input arguments to variables
 rpmk_out=$1
 features_bed=$2
