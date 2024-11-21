@@ -66,18 +66,18 @@ process_assembly_data <- function(assembly_names) {
         medlen_tbranch_change = difference(get(paste0("medlen_tbranch_", assembly_name, "_2")), get(paste0("medlen_tbranch_", assembly_name, "_1")))
       )
     
-    # Store the result in the results list with assembly name as the key
+    # Store the result in the results list with prefix of the assemblies names (Fgig or Fhep) as the key
     results_list[[assembly_name]] <- results
   }
   
-  # Return the list of results for all assemblies
+  # Return the list of results
   return(results_list)
 }
 
 # Call the function for both Fgig and Fhep
 assembly_results <- process_assembly_data(c("Fgig", "Fhep"))
 
-# Access the results for each assembly from the list
+# Access the results for each species from the list
 results_Fgig <- assembly_results[["Fgig"]]
 results_Fhep <- assembly_results[["Fhep"]]
 
@@ -139,7 +139,7 @@ plot_correlogram <- function(df_gig, df_hep) {
       numCopies_change = expression(Delta ~ " (TE copy-number)"),          
       numFullCopies_change = expression(Delta ~ " (Full-length TE copy-number)"),
       med_cpyLen_change = expression(Delta ~ " (TE copy-length (median))"),  
-      medlen_tbranch_change = expression(Delta ~ " (TE age)")  
+      medlen_tbranch_change = expression(Delta ~ " (TE age (median terminal branch length)")  
     )) +
     scale_y_discrete(labels = c(
       cov_change = "", 
