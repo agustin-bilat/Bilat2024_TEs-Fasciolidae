@@ -135,11 +135,11 @@ plot_correlogram <- function(df_gig, df_hep) {
     labs(title = "Correlogram") +
     geom_text(aes(label = paste0(round(r, 2), significance)), color = "black", size = 3) + 
     scale_x_discrete(labels = c(
-      cov_change = expression(Delta ~ " (Coverage)"),               
+      cov_change = expression(Delta ~ " (Coverage (bp))"),               
       numCopies_change = expression(Delta ~ " (TE copy-number)"),          
       numFullCopies_change = expression(Delta ~ " (Full-length TE copy-number)"),
       med_cpyLen_change = expression(Delta ~ " (TE copy-length (median))"),  
-      medlen_tbranch_change = expression(Delta ~ " (TE age (median terminal branch length)")  
+      medlen_tbranch_change = expression(Delta ~ " (TE age)")  
     )) +
     scale_y_discrete(labels = c(
       cov_change = "", 
