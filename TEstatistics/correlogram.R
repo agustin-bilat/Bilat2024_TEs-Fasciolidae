@@ -52,7 +52,7 @@ process_assembly_data <- function(assembly_names) {
   # Loop through each assembly name
   for (assembly_name in assembly_names) {
     
-    # Filter the TEfams.tab dataset by the current assembly
+    # Filter the TEfams.tab dataset by the current species (Fhep or Fgig) 
     TEfams2.tab <- TEfams.tab[grepl(assembly_name, TEfams.tab$assembly), ]
     
     # Reshape and calculate percent change for the current assembly
