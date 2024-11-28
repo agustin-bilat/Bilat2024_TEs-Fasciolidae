@@ -2,16 +2,16 @@ This readme file describes the specific steps and parameters used for the manual
 
 ## Abbreviations ##  
 
-***RM2-library:*** RepeatModeler (v 2.0.2) output of multi-fasta consensus sequences.  
+***RM2-library:*** RepeatModeler (v 2.0.2) output of multi-FASTA consensus sequences.  
 ***curated TE-library:*** The final library obtained from the initial RM2-library after the curation process. 
   
 ## Manual Curation ##
 
 **Input:**  
-RM2-library (MULTI-FASTA)
+RM2-library (multi-FASTA)
 
 **Output:**  
-curated TE-library (MULTI-FASTA)
+curated TE-library (multi-FASTA)
 
 1. `cd-hit-est -i <RM2-library_name>.fa -o <RM2-library_name>.fa.cdhit -c 0.8 -n 5 -G 0 -aS 0.8 -d 0 -g 1 -b 500`
 
