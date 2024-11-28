@@ -3,7 +3,7 @@ This readme file describes the specific steps and parameters used for the manual
 ## Abbreviations ##  
 
 ***RM2-library:*** RepeatModeler (v 2.0.2) output of multi-fasta consensus sequences.  
-
+***curated TE-library:*** The final library obtained from the initial RM2-library after the curation process. 
   
 ## Manual Curation ##
 
