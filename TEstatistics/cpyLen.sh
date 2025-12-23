@@ -11,7 +11,7 @@ assName=$2
 
 
 # Convert RepeatMasker.out table into:  chromosome | chr-beg | chr-end | fam-name | "." | str | TE-type | insertion-beg | insertion-end | ID 
-awk '$11!="Unknown"{print}' $repMask | grep -v "Simple_repeat" | grep -v "Low_complexity" | awk '$11!="Satellite"{print}' | awk -v OFS="\t" 'NR>3 && $9~/C/{print $5,$6-1,$7,$10,".","-",$11,$14-1,$13,$15}NR>3 && $9~/+/{print $5,$6-1,$7,$10,".","+",$11,$12-1,$13,$15}' |  sort -k10,10n -k8,8n > table1.tmp
+awk '$11!="Unknown"{print}' $repMask | grep -v "Simple_repeat" | grep -v "Low_complexity" | awk '$11!="Satellite"{print}' | awk -v OFS="\t" 'NR>3 && $9~/C/{print $5,$6-1,$7,$10,".","-",$11,$14-1,$13,$15}NR>3 && $9~/\+/{print $5,$6-1,$7,$10,".","+",$11,$12-1,$13,$15}' |  sort -k10,10n -k8,8n > table1.tmp
 
 # Get length of TE copies ( TEname#ID | TEtype | copy-length)
 awk -v OFS="\t" '{print $4"#"$10,$7,$3-$2}' table1.tmp > table2.tmp
